@@ -49,7 +49,6 @@ wss.on('connection', (ws, req) => {
 });
 
 process.on('SIGINT', () => {
-	console.log('communities got SIGINT');
 	Functions.Shutdown();
 });
 
