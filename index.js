@@ -30,13 +30,13 @@ wss.on('headers', (headers, request) => {
 
 global.apps = {};
 
-// Http(req => {
+Http(req => {
 
-// 	console.log('http request host!', req.host);
+	console.log('http request host!', req.host);
 
-// 	return Functions.ResolveApp(req.host.split('.')[0]);
+	return Functions.ResolveApp(req.host.split('.')[0]);
 
-// });
+});
 
 // Setup handlers for new connections
 wss.on('connection', (ws, req) => {
