@@ -45,13 +45,15 @@ const httpServer = Http((req, res, next) => {
 
 });
 
-httpServer.use(bodyParser());
+console.log('httpServer', httpServer);
 
-httpServer.get('/favicon.ico', (req, res) => {
+// httpServer.use(bodyParser());
 
-	res.sendFile(path.join(__dirname, 'assets/favicon.ico'));
+// httpServer.get('/favicon.ico', (req, res) => {
 
-});
+// 	res.sendFile(path.join(__dirname, 'assets/favicon.ico'));
+
+// });
 
 httpServer.post('/event', (req, res) => {
 
