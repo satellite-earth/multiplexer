@@ -1,9 +1,10 @@
 require('dotenv').config();
 const WebSocket = require('ws');
 const path = require('path');
+const fs = require('fs');
 
+const bodyParser = require('body-parser');
 const Http = require('../instance/http');
-
 const Functions = require('./functions');
 
 // Needed for nostr-tools relay lib
@@ -30,11 +31,62 @@ wss.on('headers', (headers, request) => {
 
 global.apps = {};
 
-Http(req => {
+const httpServer = Http((req, res, next) => {
 
 	console.log('http request host!', req.host);
 
-	return Functions.ResolveApp(req.host.split('.')[0]);
+	const subdomain = req.host.split('')[0];
+
+	// if (subdomain === 'relay') {
+	// 	return;
+	// }
+
+	return Functions.ResolveApp(subdomain);
+
+});
+
+httpServer.use(bodyParser());
+
+httpServer.get('/favicon.ico', (req, res) => {
+
+	res.sendFile(path.join(__dirname, 'assets/favicon.ico'));
+
+});
+
+httpServer.post('/event', (req, res) => {
+
+	const event = req.body;
+
+	console.log('event', event);
+
+	let name;
+
+	for (let tag of event.tags) {
+		if (tag[0] === 'name') {
+			name = tag[1];
+		}
+	}
+
+	try {
+
+		fs.mkdirSync(path.join(process.env.BASE_DATA_PATH, name));
+
+		fs.writeFileSync(
+			path.join(process.env.BASE_DATA_PATH, 'node.json'),
+			Buffer.from(JSON.stringify(global.apps))
+		);
+
+	} catch (err) {
+		console.log(err);
+	}
+
+	Functions.LoadApp({
+		auth: '1234',
+		uuid: name,
+		name
+	});
+
+	res.send();
 
 });
 
@@ -72,3 +124,9 @@ process.on('SIGINT', () => {
 });
 
 Functions.Startup();
+
+// Listen for http connections
+httpServer.listen(parseInt(process.env.HTTP_PORT || 2011), () => {
+
+	console.log(`http server running`);
+});
