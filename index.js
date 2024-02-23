@@ -47,13 +47,13 @@ const httpServer = Http((req, res, next) => {
 
 console.log('httpServer', httpServer);
 
-// httpServer.use(bodyParser());
+httpServer.use(bodyParser());
 
-// httpServer.get('/favicon.ico', (req, res) => {
+httpServer.get('/favicon.ico', (req, res) => {
 
-// 	res.sendFile(path.join(__dirname, 'assets/favicon.ico'));
+	res.sendFile(path.join(__dirname, 'assets/favicon.ico'));
 
-// });
+});
 
 httpServer.post('/event', (req, res) => {
 
