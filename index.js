@@ -41,26 +41,9 @@ Http(req => {
 // Setup handlers for new connections
 wss.on('connection', (ws, req) => {
 
-	// <name>.satellite.earth
-
-	// KEEP WORKING . . . deploy this relay to live
-	// server and test routing
-
-
-	console.log('got ws connection from ' + req.headers.host);
-
-	const app = Functions.ResolveApp(req.headers.host.split('.')[0]);
-
-	// const name = req.headers.host.split('.')[0];
-
-	// // TODO if app ID is non-numeric, assume it refers to custom subdomain
-	// // and query to get the appId associated with that subdomain
-
-	// const appId = name;
-
-	// //const name = /* TODO parse subdomain from host */'uuid_sbowman';
-
-	// const app = apps[name];
+	const app = Functions.ResolveApp(
+		req.headers.host.split('.')[0]
+	);
 
 	if (!app) {
 		console.log(`Failed to find app with ID ${appId}`);

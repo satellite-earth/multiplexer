@@ -1,6 +1,8 @@
 
 module.exports = (name => {
 
+	console.log('resolving app. . .', name);
+
 	// TODO if app ID is non-numeric, assume it refers to custom subdomain
 	// and query to get the appId associated with that subdomain
 

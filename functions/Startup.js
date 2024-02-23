@@ -1,28 +1,73 @@
 const path = require('path');
+const fs = require('fs');
 
 const LoadApp = require('./LoadApp');
 
+const { DEFAULT_CONFIG } = require('../constants');
+
+const loadConfig = (params) => {
+
+	let object;
+
+	try {
+
+		const data = fs.readFileSync(params.path);
+
+		object = JSON.parse(data.toString('utf8'));
+
+	} catch (err) {
+		console.log(err);
+	}
+
+	if (object) {
+
+		return object;
+	}
+};
+
+// const saveConfig= (data, params) => {
+
+// 	try {
+
+// 		fs.writeFileSync(
+// 			params.path,
+// 			Buffer.from(JSON.stringify(data))
+// 		);
+
+// 	} catch (err) {
+// 		console.log(err);
+// 	}
+
+// };
 
 module.exports = () => {
 
-	// TODO replace this dummy data with real list of communities
-	// TODO a community should be assigned an actual uuid when it
-	// is created, perhaps by truncating the pubkey
-	const list = [
+	let config = DEFAULT_CONFIG;
+
+	config.apps = [
 		{
-			uuid: 'uuid_sbowman',
-			name: 'sbowman',
-			auth: '6a75dea45861580ef8554236c37f481679a792c0'
-		},
-		{
-			uuid: 'uuid_bitcoin',
-			name: 'bitcoin',
-			auth: '236c37f481679a792c06a75dea45861580ef8554'
+			uuid: 'sec',
+			auth: '1234',
+			name: 'sec'
 		}
 	];
 
+	try {
 
-	for (let item of list) {
+		// Load saved config into memory from json
+		// TODO make this load from a proper database
+		config = JSON.parse(
+			fs.readFileSync(path.join(
+				process.env.BASE_DATA_PATH,
+				'communities.json'
+			)).toString('utf8')
+		);
+
+	} catch (err) {
+		console.log(err);
+	}
+
+	for (let item of config.apps) {
 
 		LoadApp(item);
 	}
