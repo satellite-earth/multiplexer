@@ -46,7 +46,7 @@ wss.on('connection', (ws, req) => {
 	);
 
 	if (!app) {
-		console.log(`Failed to find app with ID ${appId}`);
+		//console.log(`Failed to find app with ID ${appId}`);
 		return;
 	}
 
