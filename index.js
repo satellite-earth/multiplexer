@@ -4,20 +4,11 @@ const path = require('path');
 const fs = require('fs');
 
 const bodyParser = require('body-parser');
-const Http = require('../instance/http');
+const Http = require('../satellite-node/http');
 const Functions = require('./functions');
 
 // Needed for nostr-tools relay lib
 global.WebSocket = WebSocket;
-
-
-
-
-// TODO start an http server on port 2011
-// to serve the frontend applcation . . .
-// might as well be an express server so
-// that you can do things like server rss
-// and stuff like that
 
 // Create websocket server
 const wss = new WebSocket.WebSocketServer({
