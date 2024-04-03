@@ -1,6 +1,6 @@
 const path = require('path');
 
-const App = require('../../instance/app');
+const App = require('../../node/app');
 
 
 module.exports = (params) => {

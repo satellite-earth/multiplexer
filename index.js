@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 
 const bodyParser = require('body-parser');
-const Http = require('../satellite-node/http');
+const Http = require('../node/http');
 const Functions = require('./functions');
 
 // Needed for nostr-tools relay lib
