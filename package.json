@@ -1,21 +1,37 @@
 {
-  "name": "multiplex",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "nostr"
-  ],
-  "author": "Stuart Bowman",
-  "license": "MIT",
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.4",
-    "express": "^4.18.2",
-    "ws": "^8.16.0"
-  }
+	"name": "@satellite-earth/multiplexer",
+	"version": "0.0.1",
+	"description": "",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/satellite-earth/multiplexer.git"
+	},
+	"main": "dist/index.js",
+	"type": "module",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"start": "node .",
+		"dev": "tsc && node dist/index.js",
+		"build": "tsc",
+		"format": "prettier -w . --ignore-path .gitignore",
+		"test": "echo no tests"
+	},
+	"keywords": [
+		"nostr"
+	],
+	"dependencies": {
+		"@satellite-earth/personal-node": "^0.2.0",
+		"dotenv": "^16.4.5",
+		"events": "^3.3.0",
+		"mkdirp": "^3.0.1",
+		"nostr-tools": "^2.7.0",
+		"ws": "^8.17.0"
+	},
+	"devDependencies": {
+		"@types/events": "^3.0.3",
+		"@types/node": "^20.12.12",
+		"@types/ws": "^8.5.10",
+		"prettier": "^3.2.5",
+		"typescript": "^5.4.5"
+	}
 }
