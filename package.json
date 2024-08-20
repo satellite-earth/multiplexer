@@ -1,6 +1,6 @@
 {
 	"name": "@satellite-earth/multiplexer",
-	"version": "0.0.1",
+	"version": "0.3.0",
 	"description": "",
 	"repository": {
 		"type": "git",
@@ -20,7 +20,7 @@
 		"nostr"
 	],
 	"dependencies": {
-		"@satellite-earth/personal-node": "^0.2.0",
+		"@satellite-earth/personal-node": "^0.3.0",
 		"dotenv": "^16.4.5",
 		"events": "^3.3.0",
 		"mkdirp": "^3.0.1",

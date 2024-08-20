@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@satellite-earth/personal-node':
-        specifier: ^0.2.0
+        specifier: ^0.3.0
         version: link:../personal-node
       dotenv:
         specifier: ^16.4.5
